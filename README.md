@@ -45,3 +45,6 @@ GitHub link to project file repo: https://github.com/rgsommer777/04-Homework<br>
 GitHub link to hosted page: https://rgsommer777.github.io/04-Homework/
 
 ## Screenshots   
+Index: https://github.com/rgsommer777/04-Homework/blob/master/Assets/Screenshots/Start_Screen.png
+Quiz: https://github.com/rgsommer777/04-Homework/blob/master/Assets/Screenshots/Quiz_Screen.png
+End: https://github.com/rgsommer777/04-Homework/blob/master/Assets/Screenshots/All_Done_Screen.png
