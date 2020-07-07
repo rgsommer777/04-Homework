@@ -42,4 +42,4 @@ Good opportunity to exercise html and css skills , while buildinhg new skills of
 GitHub link to project file repo: https://github.com/rgsommer777/03-Homework<br>
 GitHub link to hosted page: https://rgsommer777.github.io/03-Homework/
 
-##Screenshots:   
+## Screenshots   
