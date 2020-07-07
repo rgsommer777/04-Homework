@@ -24,7 +24,7 @@ THEN I can save my initials and score
 2. Use a separate screen and javascript file to load and display the questions and answer choices. This screen displays the running time which also doubles as the score. (quiz.html, script.js)
 3. When all questions have been answered OR the time runs out, game is over and score is displayed. (alldone.html, alldone.js)
 4. User enters initials and high score.(alldone.html, alldone.js)
-5. High score page displays all high scores with initials. (highscore.html, highscore.js)
+5. High score page displays all high scores with initials from local storage. (highscore.html, highscore.js)
 
 ## Files Included
 index.html<br>
@@ -36,10 +36,12 @@ alldone.js<br>
 README.md<br>
 
 ## What I Learned
-Good opportunity to exercise html and css skills , while buildinhg new skills of DOM manipulation, timers and local storage.
+Good project to exercise html and css skills , while also buildinhg new skills of DOM manipulation, timers and local storage. 
+
+(NOTE: I had some trouble with step #5 and ran out of time prior to HW submission to get teh high score screen working).
 
 ## Links
-GitHub link to project file repo: https://github.com/rgsommer777/03-Homework<br>
-GitHub link to hosted page: https://rgsommer777.github.io/03-Homework/
+GitHub link to project file repo: https://github.com/rgsommer777/04-Homework<br>
+GitHub link to hosted page: https://rgsommer777.github.io/04-Homework/
 
 ## Screenshots   

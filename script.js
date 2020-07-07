@@ -1,16 +1,16 @@
+
+//SET UP GLOBAL CONSTANTS AND VARIABLES
 const questionEl =document.getElementById("question");
 const choices =Array.from(document.getElementsByClassName ("answer-btn"));
-
 let currentQuestion = {};
 let acceptAnswers=true;
-var timeLeft=50;
+var timeLeft=100;
 let questionCounter=0;
 let availableQuestions = [];
-
-//CONSTANTS
 const INCORRECT_PENALTY = 10;
-const MAX_QUESTIONS = 3;
+const MAX_QUESTIONS = 5;
 
+//QUESTIONS AND POSSIBLE ANSWER CHOICES FOR THE QUIZ
 let questions = [
   {
     question: "What is index 3 of the following array? [Apples, Pears, Oranges, Bananas, Grapes]",
@@ -22,30 +22,54 @@ let questions = [
    
   },
     {
-    question: "What is 9 + 4?",
-    choice1: "13",
-    choice2: "12",
-    answer: 1  
+    question: "What is the HTML tag where javascript is written?",
+    choice1: "<javascript>",
+    choice2: "<span>",
+    choice3: "<script>",
+    choice4: "<js>",
+    answer: 3  
     
   },
   {
-    question: "What is 7 + 12?",
-     choice1: "19",
-     choice2: "17",
-     answer: 1
-    
-    
+    question: "What is NOT a type of javascript loop?",
+    choice1: "do-while",
+    choice2: "number",
+    choice3: "while",
+    choice4: "for",
+    answer: 2
+       
   },
+  {
+    question: "Which of the following function of String object returns the calling string value converted to lower case?",
+    choice1: "toLocaleLowerCase()",
+    choice2: "toLowerCase()",
+    choice3: "substring()",
+    choice4: "toString()",
+    answer: 2
+  },
+  {
+    question: "Which of the following function of String object extracts a section of a string and returns a new string?",
+    choice1: "slice()",
+    choice2: "split()",
+    choice3: "replace()",
+    choice4: "search()",
+    answer: 1
+  },
+
+
 ] 
 
-//const lastQuestion = questions.length-1;
+//SET FUNCTION TO BEGIN THE QUIZ AND START THE COUNTDOWN TIMER 
 function startGame() {
+startTimer();
 questionCounter=0;
 availableQuestions=[...questions];
 //console.log(availableQuestions);
 loadNextQuestion();
 };
 
+//USING MAX_QUESTIONS AS A LIMIT, KEEP LOADING MORE QUESTIONS UNTIL TIMER IS AT 0
+// OR ALL QUESTIONS HAVE BEEN ANSWERED
 function loadNextQuestion() {
 if(availableQuestions.length==0 || questionCounter >=MAX_QUESTIONS){
   //go to end page and log score to local storage
@@ -53,7 +77,7 @@ if(availableQuestions.length==0 || questionCounter >=MAX_QUESTIONS){
   return window.location.assign("./alldone.html")
 
 }
-
+//RANDOMIZE THE ORDER OF QUESTIONS
   questionCounter++;
 const questionIndex=Math.floor(Math.random()*availableQuestions.length);
 currentQuestion=availableQuestions[questionIndex];
@@ -64,8 +88,6 @@ choices.forEach(choice => {
   choice.innerText=currentQuestion['choice' + number];
 });
 availableQuestions.splice(questionIndex,1);
-
-acceptAnswers = true;
 
 };
 
@@ -94,18 +116,7 @@ choice.addEventListener('click', e=> {
 });
 
 
-
-
-
-//function startGame(){
-// startTimer()
-// randomizedQuestions = questions.sort(() => Math.random() -.5)
-// currentQuestionIndex=0
-// console.log("STARTED!");
-// loadNextQuestion();
-//}
-
-//TIMER
+//COUNTDOWN TIMER
 function startTimer(){
 
 var countdownTimer = setInterval(function(){
@@ -120,72 +131,10 @@ var countdownTimer = setInterval(function(){
     timeLeft -= 1;
   }, 1000);
 }
-
+//TAKE OFF 10 SECONDS FOR EVERY WRONG ANSWER
 function decrementTimer (){
 timeLeft = timeLeft-INCORRECT_PENALTY;
 } 
-
+//INITIATE QUIZ
 startGame();
-startTimer();
-// function loadNextQuestion(){
-//   resetQuestion()
-//   showQuestion(randomizedQuestions[currentQuestionIndex])
 
-// }
-
-// function showQuestion(question){
-// questionEl.innerText = question.question
-// question.answers.forEach(answer => {
-//  const button=document.createElement('button')
-//  button.innerText=answer.text
-//  button.classList.add('answer-btn')
-//  if(answer.correct){
-//    button.dataset.correct=answer.correct
-//  }
-//  button.addEventListener ('click',selectAnswer)
-//  answerButtonEl.appendChild(button)
-// })
-// }
-
-// function resetQuestion(){
-// while(answerButtonEl.firstChild){
-// answerButtonEl.removeChild
-// (answerButtonEl.firstChild)
-// }
-// }
-
-// function selectAnswer(e){
-// const selectedBtn = e.target
-// const correct = selectedBtn.dataset.correct
-// Array.from(answerButtonEl.children).forEach(button =>{
-//   setStatus(button,button.dataset.correct)
- 
-// })
-// }
-
-
-// function setStatus(element, correct) {
-//  clearStatus(element) 
-//  if (correct) {
-//    element.classList.add('correct')
- 
-//    }else{
-//     element.classList.add('wrong')
-    
-//   }
-//   }
-//  function clearStatus(element){
-// element.classList.remove('correct')
-// element.classList.remove('wrong')
-// }
- 
-// function checkAnswer(answer){
-//   if(answer ==questions[currentQuestionIndex].correct==answer){
-//     console.log("CORRECT");
-//   } else{
-//     console.log("WRONG");
-    
-//   }
-// }
-
-//timeLeft=timeLeft-10;
