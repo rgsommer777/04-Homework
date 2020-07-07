@@ -50,7 +50,7 @@ function loadNextQuestion() {
 if(availableQuestions.length==0 || questionCounter >=MAX_QUESTIONS){
   //go to end page and log score to local storage
   localStorage.setItem("currentscore",timeLeft);
-  return window.location.assign("/alldone.html")
+  return window.location.assign("./alldone.html")
 
 }
 

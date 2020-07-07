@@ -27,7 +27,7 @@ THEN I can save my initials and score
 5. High score page displays all high scores with initials. (highscore.html, highscore.js)
 
 ## Files Included
-start.html
+index.html
 style.css
 quiz.html
 script.js
