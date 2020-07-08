@@ -38,7 +38,7 @@ README.md<br>
 ## What I Learned
 Good project to exercise html and css skills , while also buildinhg new skills of DOM manipulation, timers and local storage. 
 
-(NOTE: I had some trouble with step #5 and ran out of time prior to HW submission to get teh high score screen working).
+(NOTE: I had some trouble with step #5 and ran out of time prior to HW submission to get the high score screen working).
 
 ## Links
 GitHub link to project file repo: https://github.com/rgsommer777/04-Homework<br>
