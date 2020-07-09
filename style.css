@@ -122,15 +122,16 @@ body {
     border-radius: 10px;
 
     }
-.score-btn {
+.score-list {
     font-size: 30px;
     font-weight: 600;
-    color: snow;
-    margin: 130px 100px;
-    padding: 5px;
+    text-align: left;
+    color: rgb(17, 16, 16);
+    margin: 20px 100px;
+    padding: 0px 0px;
     width: 600px;
-    height: 50px;
-    background-color: rgb(157, 21, 161);
+    height: 40px;
+    background-color: rgb(157, 199, 149);
     border-radius: 10px;
     
 }

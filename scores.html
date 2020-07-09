@@ -19,9 +19,8 @@
   <body>
 
   <div class = "title">High Scores
-    <div id =score-container>
-    <div class = "intro">
-      <button id=score class="score-btn">Score</button>
+    <div id =score-container class = "score-list">
+     
     </div>
   <!-- <div class = "controls"> -->
  <button id="startAgn" class="start-btn">Start Again</button>
@@ -45,18 +44,18 @@ var highScores = {
 
 //RENDER CURRENT SCORE
 function renderScore(){
-  // document.getElementById ("score").innerText=(JSON.stringify(highScores));
+
 var hsString = JSON.stringify(highScores);
-console.log(hsString);
-// if (hsString = null) {
-//   document.getElementById("score").innerHTML= "";
-// } else{
-document.getElementById("score").innerHTML= hsString;
+var node = document.createElement("ul");
+var textnode = document.createTextNode(lsInitials +":" + lsCurrentScore);
+
+document.getElementById("score-container").innerText = lsInitials +":" + lsCurrentScore;
+//ADD NEXT SCORE
+node.appendChild(textnode);
+
 
 }
 renderScore()
-
-//ADD HIGH SCORE TO ARRAY
 
 
 
@@ -74,7 +73,7 @@ clearButtonEl.addEventListener('click', clearScore);
 
 function clearScore(){
   localStorage.clear();
-  document.getElementById("score").innerHTML= "";
+  document.getElementById("score-container").innerHTML= "";
 
 }
 </script>  
