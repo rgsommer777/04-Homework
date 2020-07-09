@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\gt-atl-fsf-pt-06-2020-u-c"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "04-Homework"
+	}
+}

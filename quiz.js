@@ -69,7 +69,7 @@ loadNextQuestion();
 };
 
 //USING MAX_QUESTIONS AS A LIMIT, KEEP LOADING MORE QUESTIONS UNTIL TIMER IS AT 0
-// OR ALL QUESTIONS HAVE BEEN ANSWERED
+// OR ALL QUESTIONS HAVE BEEN ANSWERED - THEN NAVIGATE TO FINAL SCORE SCREEN (ALLDONE.HTML)
 function loadNextQuestion() {
 if(availableQuestions.length==0 || questionCounter >=MAX_QUESTIONS){
   //go to end page and log score to local storage
@@ -78,39 +78,53 @@ if(availableQuestions.length==0 || questionCounter >=MAX_QUESTIONS){
 
 }
 //RANDOMIZE THE ORDER OF QUESTIONS
-  questionCounter++;
+questionCounter++;
 const questionIndex=Math.floor(Math.random()*availableQuestions.length);
 currentQuestion=availableQuestions[questionIndex];
 question.innerText=currentQuestion.question;
 
+
+//FOR EACH POSSIBLE CHOICE, SET A CONSTANT ("NUMBER") THAT IDENTIFIES THE CHOICE USING THE DATASET NUUMBER 
+//POPULATE THE CHOICE TEXT IN THE BUTTONS
 choices.forEach(choice => {
   const number = choice.dataset['number'];
   choice.innerText=currentQuestion['choice' + number];
 });
+
+//ELIMINATE THE CURRENT QUESTION FROM THE QUESTION POOL SO IT DOESN'T REPEAT
 availableQuestions.splice(questionIndex,1);
 
 };
 
+//ADD EVENT LISTENER FOR EACH OF THE FOUR POSSIBLE CHOICES
 choices.forEach(choice => {
-choice.addEventListener('click', e=> {
-  //console.log(e.target);
-  const selectedChoice = e.target;
-  const selectedAnswer = selectedChoice.dataset["number"];
+  choice.addEventListener('click', e=> {
+    //console.log(e.target);
+//SET A CONSTANT NUMBER ("SELECTEDANSWER") FROM THE SELECTED BUTTON REPRESENTING THE SELECTED ANSWER NUMBER FROM THE DATASET PROPERTY  
+    const selectedChoice = e.target;
+    const selectedAnswer = selectedChoice.dataset["number"];
+//  
+    let classToApply = 'wronganswer';
+    if(selectedAnswer==currentQuestion.answer){
+       classToApply='rightanswer';
+       console.log("RIGHT!")
 
-  let classToApply = 'incorrect';
-  if(selectedAnswer==currentQuestion.answer){
-    classToApply='correct';
+
+     }
+  
+    if(classToApply=='wronganswer'){
+      decrementTimer();
+      console.log("WRONG!")
+
+      
   }
+   selectedChoice.parentElement.classList.add(classToApply); 
+   selectedChoice.parentElement.classList.remove(classToApply);
+  
+  
+    //console.log(selectedAnswer==currentQuestion.answer);
+    loadNextQuestion();
 
-  if(classToApply=='incorrect'){
-    decrementTimer();
-  }
-  selectedChoice.parentElement.classList.add(classToApply);
-  //selectedChoice.parentElement.classList.remove(classToApply);
-
-
-  console.log(classToApply);
-  loadNextQuestion();
 });
 
 });
@@ -126,12 +140,12 @@ var countdownTimer = setInterval(function(){
     //localStorage.setItem("currentscore",0);
    } else {
     document.getElementById("timer-display").innerHTML = timeLeft;
-    console.log(timeLeft);
+    //console.log(timeLeft);
    }
     timeLeft -= 1;
   }, 1000);
 }
-//TAKE OFF 10 SECONDS FOR EVERY WRONG ANSWER
+//TAKE 10 SECONDS OFF TIMER FOR EVERY WRONG ANSWER
 function decrementTimer (){
 timeLeft = timeLeft-INCORRECT_PENALTY;
 } 
