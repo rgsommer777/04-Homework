@@ -33,7 +33,7 @@ quiz.html<br>
 quiz.js<br>
 alldone.html<br>
 alldone.js<br>
-scores.html
+scores.html<br>
 README.md<br>
 
 ## What I Learned
@@ -46,7 +46,7 @@ GitHub link to project file repo: https://github.com/rgsommer777/04-Homework<br>
 GitHub link to hosted page: https://rgsommer777.github.io/04-Homework/
 
 ## Screenshots   
-Index: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Start_Screen.png
-Quiz: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Quiz_Screen.png
-All Done: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/All_Done_Screen.png
+Index: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Start_Screen.png<br>
+Quiz: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Quiz_Screen.png<br>
+All Done: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/All_Done_Screen.png<br>
 Scores: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/High_Scores.png
