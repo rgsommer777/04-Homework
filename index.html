@@ -1,41 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href = "style.css">
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script> -->
-     
-    <title>Javascript Quiz-Start</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Work Day Scheduler</title>
   </head>
-  <body>
 
-  <div class = "title">JavaScript Quiz
-    <div id =sub-container>
-    <div class = "intro">Try to answer all of the following challenge questions before the timer runs out.<br><br>
-         Keep in mind that every incorrect answer will penalize your score by 10 points!
-  </div>
-    <!-- <div class = "controls"> -->
-        <button id="startBtn" class="start-btn">Start Quiz</button>
-  
-  </body>    
- 
-  <script> 
- 
-//START QUIZ BUTTON LAUNCHES QUIZ.HTML
-function startGame(){
-  window.location=("./quiz.html");
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+      <!-- <p id="currentHour" class="lead"></p> -->
+    </header>
+      <div class="container">
+        <!-- Timeblocks go here -->
+        <div id ="hour-lbls" class="hour-lbls"></div>
+        <div id="input-boxes" class="input-boxes"></div>
+        <div id="save-buttons"></div>
+        <!-- <div "save" class="save-btn"></div> -->
+        <!-- <p><input type="submit" value="Save"></p>  -->
+      
+       
+        <!-- <div "tb" class="time-block"></div> -->
+
+      </div>
+   
+           
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
+      
+  </body>
+  <script>
+    // $(document).ready(function(){
+    
+    //Time variables using moment.js CDN link
+    let now = moment();
+    let weekday = moment().format('dddd');
+    let day = moment().format('Do');
+    let currentHour=(now.format('HH'));
+    let currentHourAmPm=(now.format('hA'));
+    let hour = moment().format('hA')
+    let hourNum = moment().format('HH')
+    //color code variables
+    let past=true;
+    let present=false;
+
+    
+    
+
+    //Log some stuff
+    // console.log(now);
+    // console.log(currentHour12);
+    // console.log(currentHour24);
+    // console.log(weekday);
+    // console.log(day);
+
+
+   //Display current date at top of app page
+    $(currentDay).text(now.format('dddd, MMMM Do, YYYY'));  
+  //Check for stored entries
+let storedEntries = JSON.parse(localStorage.getItem('entryList'))
+//for first time use set up local storage structure
+if (!storedEntries) {
+    storedEntries = {0: "", 1: "10 AM Meeting Test", 2: "", 3: "Lunch at Noon", 4: "", 5: "Test at 3PM", 6: "", 7: "", 8: "Last Hour of the work day @ 5PM"}
+}
+localStorage.setItem('entryList', JSON.stringify(storedEntries));
+
+// build entry input blocks
+for (var i = 0; i < 9; i++) {
+
+    var hourLoop = moment().hour(i + 9).format('hA')
+    //set color variable for current hour = "present"
+    if (hourLoop === hour) {
+        past = false;
+        present = true;
+    }
+    //build the rows for entry input
+    var thisRow = $('<div class="row">')
+    $('.input-boxes').append(thisRow)
+    //add the hour labels
+    let hourBlock = $(`<div class="hour-lbls" data-index="${i}">`)
+    hourBlock.text(`${hourLoop}`);
+    thisRow.append(hourBlock)
+// }
+    //add entry blocks - including any stored entries from the storedEntries object
+    let entryBlock = $(`<textarea class="input-box" data-index="${i}">`)
+    entryBlock.text(storedEntries[i])
+    //add color classes for past / present /future hours
+    if (past) {
+        entryBlock.addClass("past")
+    } else if (present) {
+        entryBlock.addClass("present")
+        present = false;
+    } else {
+        entryBlock.addClass("future")
+    }
+    thisRow.append(entryBlock)
+    
+    //add the save buttons and fontawesome "save" icon
+    let btn = $(`<button class="col-1 btn saveBtn" data-index="${i}">`)
+    // if (storedEntries[i].length) {
+    //     btn.append(`<i class="far fa-save fa-2x" data-index="${i}">`)
+    //     // entryBlock.prop('disabled', true)
+    // } else {
+    btn.append(`<i class="far fa-save fa-2x" data-index="${i}">`)
+    // }
+    thisRow.append(btn)
 }
 
-const startButtonEl = document.getElementById("startBtn");
-startButtonEl.addEventListener('click', startGame);</script>  
+// //listen to user mouse click
+// $('.saveBtn').click(function () {
+//     let index = $(this).attr('data-index');
+//     //choose button effect and storage option based on if a stored task is unlocked or new task is locked in
+//     if (storedEntries[index]) {
+//         $('textarea[data-index="${index}"]').prop('disabled', false);
+//         storedEntries[index] = "";
+//         $('i[data-index="${index}"]').addClass('far fa-save fa-2x');
+//         localStorage.setItem('entryList', JSON.stringify(storedEntries));
+//     } else {
+//         let txt = $('textarea[data-index="${index}"]')
+//         if (txt.val()) { //handles the case that save is clicked on empty text area
+//             storedEntries[index] = txt.val();
+//             txt.prop('disabled', true);
+//             $('i[data-index="${index}"]').addClass('far fa-save fa-2x');
+//             localStorage.setItem('entryList', JSON.stringify(storedEntries));
+        // }
+    // }
+// })
 
+  
+  
+  
+  // hourLabel=["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"]
+  //     hourLabel.addClass("hour-lbl");
+  //     hourLabel.attr("data-hour", hourLabel[i]);
+  //     hourLabel.text(hourText[i]+" ("+hourLabel[i]+")");
+  //     $("#hour-lbls").append(hourLabel);
+    
+    //   };
+    // for (var i = 0; i < hourNum.length; i++) {
+    //   var inputBox = $("<input>");
+    //   inputBox.addClass("input-box");
+    //   inputBox.attr("data-input", hourNum[i]);
+    //   // inputBox.text(input);
+    //   $("#input-boxes").append(inputBox);
+    //   };
+        
+    //   $(inputBox).each(function(){
+    //     if(input = 11){
+    //     inputBox.addClass("present");
+    //   };
+      
+    //   for (var i = 0; i < hourNum.length; i++) {
+    //   var saveButton = $("<button>");
+    //   saveButton.addClass("saveBtn");
+    //   saveButton.attr("data-save", hourNum[i]);
+    //   saveButton.html("<i class='far fa-save fa-2x'></i>").addClass("saveBtn");
+    //   // saveBtn.text(hours[i]);
+    //   $("#save-buttons").append(saveButton);
+    
+    //  }});
+    // console.log(input);
+    // console.log(inputBox.attr("data-input"));
+    // console.log(currentHour);
+    // console.log(hourNum);
+    // //Form handler for time block entries
+    // $("#entry-block").submit(function(event){
+    //   event.preventDefault();
+    //   var entryText =$("#entry-block").val();
+    //   $("<h1>'test'</h1>").val();
+    //   $("#entry-block").html(localStorage.setItem ("9AM",entryText));
+    // })
+    
+
+      // var activity ={"hour": "", "lname": ""};
+      // $(currentDay).html("<h1>"+activity.hour+"</h1>");
+    
+  </script>
 </html>

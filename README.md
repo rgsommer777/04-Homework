@@ -1,52 +1,52 @@
-# Homework-4: Build a Javascript Quiz Application
- Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+## 05 Third-Party APIs: Work Day Scheduler
+Create a simple calendar application that allows the user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
+
+You'll need to use the [Moment.js](https://momentjs.com/) library to work with date and time. 
+Be sure to read the documentation carefully and concentrate on using Moment.js in the browser.
+
 
 ## User Story
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
+AS AN employee with a busy schedule
+I WANT to add important events to a daily planner
+SO THAT I can manage my time effectively
+
 
 ## Acceptance Criteria
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+GIVEN I am using a daily planner to create a schedule
+WHEN I open the planner
+THEN the current day is displayed at the top of the calendar
+WHEN I scroll down
+THEN I am presented with timeblocks for standard business hours
+WHEN I view the timeblocks for that day
+THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist
+
+
+The following animation demonstrates the application functionality:
+![day planner demo](./Assets/05-third-party-apis-homework-demo.gif)
+
 
 ## My Approach
-1. Create a start screen to launch the quiz (start.html)
-2. Use a separate screen and javascript file to load and display the questions and answer choices. This screen displays the running time which also doubles as the score. (quiz.html, script.js)
-3. When all questions have been answered OR the time runs out, game is over and score is displayed. (alldone.html, alldone.js)
-4. User enters initials and high score.(alldone.html, alldone.js)
-5. High score page displays all high scores with initials from local storage. (scores.html)
+1. 
 
 ## Files Included
 index.html<br>
 style.css<br>
-quiz.html<br>
-quiz.js<br>
-alldone.html<br>
-alldone.js<br>
-scores.html<br>
+
 README.md<br>
 
 ## What I Learned
-Good project to exercise html and css skills , while also buildinhg new skills of DOM manipulation, timers and local storage. 
 
-(NOTE: I had some trouble with step #5 and was able to display the most recent game score and initials from localStorage, but ran out of time prior to HW submission to append the high scores in a running fashion).
 
 ## Links
-GitHub link to project file repo: https://github.com/rgsommer777/04-Homework<br>
-GitHub link to hosted page: https://rgsommer777.github.io/04-Homework/
+GitHub link to project file repo: <br>
+GitHub link to hosted page: 
 
 ## Screenshots   
-Index: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Start_Screen.png<br>
-Quiz: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/Quiz_Screen.png<br>
-All Done: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/All_Done_Screen.png<br>
-Scores: https://raw.githubusercontent.com/rgsommer777/04-Homework/master/Assets/Screenshots/High_Scores.png
+Index: <br>
+
