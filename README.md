@@ -32,14 +32,17 @@ The following animation demonstrates the application functionality:
 
 
 ## My Approach
-1. 
+1. Use jquery to replicate elements for text entry blocks and save buttons.
+2. Use classes to color code the text entry blocks based on comparison of current hour to moment.js. (past, present, future).
+3. Save entries by line using an object (storedEntries) to enable persistance on refresh
+
+
 
 ## Files Included
 index.html<br>
 style.css<br>
-
 README.md<br>
-
+Assets/screenshots/dayPlannerScreenshot.png
 ## What I Learned
 
 

@@ -34,15 +34,10 @@
         <div id ="hour-lbls" class="hour-lbls"></div>
         <div id="input-boxes" class="input-boxes"></div>
         <div id="save-buttons"></div>
-        <!-- <div "save" class="save-btn"></div> -->
-        <!-- <p><input type="submit" value="Save"></p>  -->
-      
-       
-        <!-- <div "tb" class="time-block"></div> -->
+        
 
       </div>
-   
-           
+             
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -59,31 +54,23 @@
     let currentHour=(now.format('HH'));
     let currentHourAmPm=(now.format('hA'));
     let hour = moment().format('hA')
-    let hourNum = moment().format('HH')
+    
     //color code variables
     let past=true;
     let present=false;
 
-    
-    
-
-    //Log some stuff
-    // console.log(now);
-    // console.log(currentHour12);
-    // console.log(currentHour24);
-    // console.log(weekday);
-    // console.log(day);
-
-
+ 
    //Display current date at top of app page
     $(currentDay).text(now.format('dddd, MMMM Do, YYYY'));  
+ 
   //Check for stored entries
 let storedEntries = JSON.parse(localStorage.getItem('entryList'))
+
 //for first time use set up local storage structure
 if (!storedEntries) {
-    storedEntries = {0: "", 1: "10 AM Meeting Test", 2: "", 3: "Lunch at Noon", 4: "", 5: "Test at 3PM", 6: "", 7: "", 8: "Last Hour of the work day @ 5PM"}
+    storedEntries = {0: "", 1: "10 AM Meeting", 2: "", 3: "Lunch at Noon", 4: "", 5: "Test at 2PM", 6: "", 7: "", 8: "Miller Time!"}
 }
-localStorage.setItem('entryList', JSON.stringify(storedEntries));
+//localStorage.setItem('entryList', JSON.stringify(storedEntries));
 
 // build entry input blocks
 for (var i = 0; i < 9; i++) {
@@ -118,82 +105,23 @@ for (var i = 0; i < 9; i++) {
     
     //add the save buttons and fontawesome "save" icon
     let btn = $(`<button class="col-1 btn saveBtn" data-index="${i}">`)
-    // if (storedEntries[i].length) {
-    //     btn.append(`<i class="far fa-save fa-2x" data-index="${i}">`)
-    //     // entryBlock.prop('disabled', true)
-    // } else {
+    if (storedEntries[i].length!==3) {
     btn.append(`<i class="far fa-save fa-2x" data-index="${i}">`)
-    // }
+     }
     thisRow.append(btn)
-}
+ }
 
-// //listen to user mouse click
-// $('.saveBtn').click(function () {
-//     let index = $(this).attr('data-index');
-//     //choose button effect and storage option based on if a stored task is unlocked or new task is locked in
-//     if (storedEntries[index]) {
-//         $('textarea[data-index="${index}"]').prop('disabled', false);
-//         storedEntries[index] = "";
-//         $('i[data-index="${index}"]').addClass('far fa-save fa-2x');
-//         localStorage.setItem('entryList', JSON.stringify(storedEntries));
-//     } else {
-//         let txt = $('textarea[data-index="${index}"]')
-//         if (txt.val()) { //handles the case that save is clicked on empty text area
-//             storedEntries[index] = txt.val();
-//             txt.prop('disabled', true);
-//             $('i[data-index="${index}"]').addClass('far fa-save fa-2x');
-//             localStorage.setItem('entryList', JSON.stringify(storedEntries));
-        // }
-    // }
-// })
+// set click function to update the entry block line to local storage
+$('.saveBtn').click(function () {
+    let index = $(this).attr('data-index');
+    let txt = $(`textarea[data-index="${index}"]`)
+        if (txt.val()!= null) { //handles empty text case
+            storedEntries[index] = txt.val();
+            localStorage.setItem('entryList', JSON.stringify(storedEntries));
+         }
+     }
+ )
 
-  
-  
-  
-  // hourLabel=["9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"]
-  //     hourLabel.addClass("hour-lbl");
-  //     hourLabel.attr("data-hour", hourLabel[i]);
-  //     hourLabel.text(hourText[i]+" ("+hourLabel[i]+")");
-  //     $("#hour-lbls").append(hourLabel);
-    
-    //   };
-    // for (var i = 0; i < hourNum.length; i++) {
-    //   var inputBox = $("<input>");
-    //   inputBox.addClass("input-box");
-    //   inputBox.attr("data-input", hourNum[i]);
-    //   // inputBox.text(input);
-    //   $("#input-boxes").append(inputBox);
-    //   };
-        
-    //   $(inputBox).each(function(){
-    //     if(input = 11){
-    //     inputBox.addClass("present");
-    //   };
-      
-    //   for (var i = 0; i < hourNum.length; i++) {
-    //   var saveButton = $("<button>");
-    //   saveButton.addClass("saveBtn");
-    //   saveButton.attr("data-save", hourNum[i]);
-    //   saveButton.html("<i class='far fa-save fa-2x'></i>").addClass("saveBtn");
-    //   // saveBtn.text(hours[i]);
-    //   $("#save-buttons").append(saveButton);
-    
-    //  }});
-    // console.log(input);
-    // console.log(inputBox.attr("data-input"));
-    // console.log(currentHour);
-    // console.log(hourNum);
-    // //Form handler for time block entries
-    // $("#entry-block").submit(function(event){
-    //   event.preventDefault();
-    //   var entryText =$("#entry-block").val();
-    //   $("<h1>'test'</h1>").val();
-    //   $("#entry-block").html(localStorage.setItem ("9AM",entryText));
-    // })
-    
-
-      // var activity ={"hour": "", "lname": ""};
-      // $(currentDay).html("<h1>"+activity.hour+"</h1>");
     
   </script>
 </html>
